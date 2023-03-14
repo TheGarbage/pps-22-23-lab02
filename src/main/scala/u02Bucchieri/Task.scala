@@ -62,7 +62,6 @@ object Task extends App:
           (point._2 <= xy._2 + l / 2 & point._2 >= xy._2 - l / 2)
 
   import Shape.*
-  println(contains(Square(5, (2.5, 2.5)), (5, 5)))
 
 
   // Task 8
