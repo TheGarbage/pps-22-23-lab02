@@ -1,9 +1,16 @@
 package u02
 
 import BTrees.Tree.*
+<<<<<<< HEAD:test/u02/BTreesTest.scala
+import org.junit.jupiter.api.Assertions.{assertEquals, assertFalse, assertTrue}
+import org.junit.jupiter.api.Test
+
+
+=======
 import junit.framework.TestCase.assertTrue
 import org.junit.Assert.{assertEquals, assertFalse}
 import org.junit.Test
+>>>>>>> b6e3de5eda6a909e6e63c3737cf1b9f8349b17a8:src/test/scala/u02/BTreesTest.scala
 
 class BTreesTest:
 
