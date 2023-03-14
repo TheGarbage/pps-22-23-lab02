@@ -1,8 +1,10 @@
 package u02
 
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.Assertions.*
 import BTrees.Tree.*
+import org.junit.jupiter.api.Assertions.{assertEquals, assertFalse, assertTrue}
+import org.junit.jupiter.api.Test
+
+
 
 class BTreesTest:
 
