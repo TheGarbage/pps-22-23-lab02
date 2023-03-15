@@ -42,24 +42,24 @@ object Task extends App:
 
 
   enum Shape:
-    case Rectangle (lx: Double, ly: Double, xy: (Double, Double))
-    case Circle (r: Double, xy: (Double, Double))
-    case Square (l: Double, xy: (Double, Double))
+    case Rectangle (b: Double, h: Double, o: (Double, Double))
+    case Circle (r: Double, o: (Double, Double))
+    case Square (l: Double, o: (Double, Double))
 
   object Shape:
     def perimeter(shape: Shape): Double = shape match
-      case Rectangle(lx, ly, _) => 2 * (lx + ly)
+      case Rectangle(b, h, _) => 2 * (b + h)
       case Circle(r , _) => 2 * r * 3.14
       case Square(l , _) => 4 * l
     def contains(shape: Shape, point: (Double, Double)): Boolean = shape match
-      case Rectangle(lx, ly, xy) =>
-        (point._1 <= xy._1 + lx / 2 & point._1 >= xy._1 - lx / 2) &
-          (point._2 <= xy._2 + ly / 2 & point._2 >= xy._2 - ly / 2)
-      case Circle(r, xy) =>
-        ((point._1 - xy._1) * (point._1 - xy._1) + (point._2 - xy._2) * (point._2 - xy._2)) <= r * r
-      case Square(l, xy) =>
-        (point._1 <= xy._1 + l / 2 & point._1 >= xy._1 - l / 2) &
-          (point._2 <= xy._2 + l / 2 & point._2 >= xy._2 - l / 2)
+      case Rectangle(b, h, o) =>
+        (point._1 <= o._1 + b / 2 & point._1 >= o._1 - b / 2) &
+          (point._2 <= o._2 + h / 2 & point._2 >= o._2 - h / 2)
+      case Circle(r, o) =>
+        ((point._1 - o._1) * (point._1 - o._1) + (point._2 - o._2) * (point._2 - o._2)) <= r * r
+      case Square(l, o) =>
+        (point._1 <= o._1 + l / 2 & point._1 >= o._1 - l / 2) &
+          (point._2 <= o._2 + l / 2 & point._2 >= o._2 - l / 2)
 
   import Shape.*
 
@@ -82,13 +82,11 @@ object Task extends App:
     def filter[A](option: Option[A])(f: A => Boolean): Option[A] = option match
       case Some(a) if f(a) => option
       case _ => None()
-
     def map[A](option: Option[A])(f: A => Boolean): Option[Boolean] = option match
       case Some(a) => Some(f(a))
       case _ => None()
-
-    def fold[A](option: Option[A])(dV: A)(f: A => A): A = option match
+    def fold[A](option: Option[A])(d: A)(f: A => A): A = option match
       case Some(a) => f(a)
-      case _ => dV
+      case _ => d
 
 end Task
