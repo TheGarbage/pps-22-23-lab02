@@ -32,14 +32,9 @@ object Task extends App:
 
   //Task 4
   @tailrec
-  def gcd(a: Int, b: Int): Int = a > b match
-    case true => a % b match
-      case 0 => b
-      case _ => gcd(b, a % b)
-    case false => b % a match
-      case 0 => a
-      case _ => gcd(a, b % a)
-
+  def gcd(a: Int, b: Int): Int = b == 0 match
+    case true => a
+    case _ => gcd(b, a % b)
 
   enum Shape:
     case Rectangle (b: Double, h: Double, o: (Double, Double))
@@ -52,17 +47,20 @@ object Task extends App:
       case Circle(r , _) => 2 * r * 3.14
       case Square(l , _) => 4 * l
     def contains(shape: Shape, point: (Double, Double)): Boolean = shape match
-      case Rectangle(b, h, o) =>
-        (point._1 <= o._1 + b / 2 & point._1 >= o._1 - b / 2) &
-          (point._2 <= o._2 + h / 2 & point._2 >= o._2 - h / 2)
-      case Circle(r, o) =>
-        ((point._1 - o._1) * (point._1 - o._1) + (point._2 - o._2) * (point._2 - o._2)) <= r * r
-      case Square(l, o) =>
-        (point._1 <= o._1 + l / 2 & point._1 >= o._1 - l / 2) &
-          (point._2 <= o._2 + l / 2 & point._2 >= o._2 - l / 2)
+      case Rectangle(b, h, o) => (o, point) match
+        case ((x0, y0), (x1, y1)) if x0 == x1 & y0 == y1 => true
+        case ((x0, y0), (x1, y1)) => (x1 <= x0 + b / 2 & x1 >= x0 - b / 2) &
+          (y1 <= y0 + h / 2 & y1 >= y0 - h / 2)
+      case Circle(r, o)  => (o, point) match
+        case ((x0, y0), (x1, y1)) if x0 == x1 & y0 == y1 => true
+        case ((x0, y0), (x1, y1)) => ((x1 - x0) * (x1 - x0) + (y1 - y0) * (y1 - y0)) <= r * r
+      case Square(l, o) => (o, point) match
+        case ((x0, y0), (x1, y1)) if x0 == x1 & y0 == y1 => true
+        case ((x0, y0), (x1, y1)) => (x1 <= x0 + l / 2 & x1 >= x0 - l / 2) &
+          (y1 <= y0 + l / 2 & y1 >= y0 - l / 2)
 
   import Shape.*
-
+  println(contains(Rectangle(2, 2, (1.0, 1.0)), (2.0, 2.0)))
 
   // Task 8
   enum Option[A]:
