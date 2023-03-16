@@ -60,9 +60,6 @@ object Task extends App:
         case ((x0, y0), (x1, y1)) => (x1 <= x0 + l / 2 & x1 >= x0 - l / 2) &
           (y1 <= y0 + l / 2 & y1 >= y0 - l / 2)
 
-  import Shape.*
-  println(contains(Rectangle(2, 2, (1.0, 1.0)), (2.0, 2.0)))
-
   // Task 8
   enum Option[A]:
     case Some(a: A)
