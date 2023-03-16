@@ -30,12 +30,13 @@ object Task extends App:
   def compose(f: Int => Int, g: Int => Int): Int => Int = i => f(g(i))
   def composeGen[X, Y, Z](f: X => Y, g: Z => X): Z => Y = i => f(g(i))
 
-  //Task 4
+  //Task 6
   @tailrec
   def gcd(a: Int, b: Int): Int = b == 0 match
     case true => a
     case _ => gcd(b, a % b)
 
+  // Task 7
   enum Shape:
     case Rectangle (b: Double, h: Double, o: (Double, Double))
     case Circle (r: Double, o: (Double, Double))
